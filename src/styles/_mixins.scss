@@ -1,0 +1,118 @@
+
+@mixin full-hd-desktop {
+    @media (min-width: #{$mm-com-fullhd-desktop-breakpoint}) {
+        @content;
+    }
+  }
+@mixin very-large-desktop {
+    @media (min-width: #{$mm-com-large-desktop-breakpoint}) {
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media (min-width: #{$mm-com-desktop-breakpoint}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$mm-com-tablet-breakpoint}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$mm-com-large-mobile-breakpoint}) {
+        @content;
+    }
+}
+
+@mixin large-mobile {
+    @media (min-width: #{$mm-com-mobile-breakpoint}) {
+        @content;
+    }
+}
+@mixin mobile-only {
+    @media (max-width: #{$mm-com-mobile-breakpoint}) {
+        @content;
+    }
+}
+
+// added a mixin for display flex on all browsers
+@mixin display-flex{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin display-inline-flex{
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin flex-prop($justify-content: '', $align-items: '', $flex-direction: ''){
+    @if($justify-content != ''){
+    justify-content: $justify-content;
+    -webkit-justify-content: $justify-content;
+    -moz-justify-content: $justify-content;
+    }
+    @if($align-items != ''){
+    align-items: $align-items;
+    -webkit-align-items: $align-items;
+    }
+    @if($flex-direction != ''){
+    flex-direction: $flex-direction;
+    -moz-flex-direction: $flex-direction;
+    -webkit-flex-direction: $flex-direction;
+    }
+}
+
+
+/**
+*Mixin to give the same border-radius to all the edges
+**/
+
+@mixin border-radius($border-radius) {
+    @include custom-border-radius ($border-radius, $border-radius, $border-radius, $border-radius)
+}
+
+/**
+*Mixin to give different border-radius to each edge
+**/
+
+@mixin custom-border-radius ($topleft-border-radius, $topright-border-radius, $bottomright-border-radius, $bottomleft-border-radius) {
+    -webkit-border-radius: $topleft-border-radius $topright-border-radius $bottomright-border-radius $bottomleft-border-radius;
+    -moz-border-radius: $topleft-border-radius $topright-border-radius $bottomright-border-radius $bottomleft-border-radius;
+    border-radius: $topleft-border-radius $topright-border-radius $bottomright-border-radius $bottomleft-border-radius;
+}
+
+/*Set style to each text*/
+
+@mixin mm-com-text-style($color, $font-size, $font-weight, $line-height, $text-transform){
+    color: $color;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    text-transform: $text-transform;
+}
+
+
+  
+
+  
+
+
+  
+
+
+
+  
+
+
+  
+
+  
