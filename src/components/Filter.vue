@@ -4,8 +4,8 @@
        <div class="filter__title">Currently looking for shipments that:</div>
        <div class="filter__content">
             <div class="filter__content__action">
-                <button class="filter__content__action__btn" @click="submitDriverAction">need a driver</button>
-                <button class="filter__content__action__btn" @click="submitNearbyAction">nearby</button>
+                <button class="filter__content__action__btn submit-driver-action" :class="{active: isDriverActive}" @click="submitDriverAction">need a driver</button>
+                <button class="filter__content__action__btn submit-nearby-action" :class="{active: isNearbyActive}" @click="submitNearbyAction">nearby</button>
             </div>
         </div>
    </div>
@@ -16,16 +16,21 @@ export default {
   name: "FilterShipments",
   data(){
       return{
-           
+           isDriverActive: false,
+           isNearbyActive: false
       }
   },
   props: {},
 
   methods: {
       submitDriverAction(){
+           this.isNearbyActive = false;
+           this.isDriverActive = true;
            this.$emit('needDriverActivated');
       },
       submitNearbyAction(){
+          this.isNearbyActive = true;
+          this.isDriverActive = false;
            this.$emit('needNearbyDriverActivated');
       }
   },
@@ -51,22 +56,43 @@ export default {
             width: 100%;
             display: flex;
             justify-content: space-between;
+            @include tablet{
+                justify-content: flex-start;
+            }
             
             &__btn{
                 width: 50%;
                 padding: 8px 10px;
                 text-transform: capitalize;
-                background: #161e3c;
-                border: #161e3c;
                 border-radius: 21px;
-                color: #fff;
                 font-weight: bold;
                 padding: 12px;
                 font-size: 14px;
-                &:first-of-type{
-                    background: #F16523;
-                    border: #F16523;
-                    margin-right: 5px;
+                background: transparent;
+                @include tablet{
+                    width: 170px;
+                    cursor: pointer;
+                }
+            }
+            .submit-driver-action{
+                border: 1px solid $primary;
+                margin-right: 5px;
+                color: $primary;
+                @include tablet{
+                    margin-right: 20px;
+                }
+                &.active{
+                    background: $primary;
+                    color: $white;
+                }
+            }
+             .submit-nearby-action{
+               border: 1px solid $secondry;
+               @include border-radius(21px);
+                color: $secondry;
+                &.active{
+                    background: $secondry;
+                    color: $white;
                 }
             }
         }
