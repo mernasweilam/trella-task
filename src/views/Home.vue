@@ -41,8 +41,7 @@ export default {
   methods: {
     //fetch shipments that need a driver
     fetchShipments() {
-      trellaAxios
-        .get(`https://case-api.trella.app/marketplace?outcode='driver'`)
+      trellaAxios.get(`https://case-api.trella.app/marketplace?outcode='driver'`)
         .then(data => {
           this.cards = data.data;
         });
